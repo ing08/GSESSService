@@ -1,0 +1,209 @@
+/**
+ * bodyタグ（文書本体）
+ */
+ body {
+	background-color: #ffffff;
+	color: #494949;
+}
+
+.button {
+	display       : inline-block;
+	border-radius : 4%;          /* 角丸       */
+	font-size     : 14pt;        /* 文字サイズ */
+	text-align    : center;      /* 文字位置   */
+	cursor        : pointer;     /* カーソル   */
+	padding       : 10px 10px;   /* 余白       */
+	background    : #ffd2d6;    /* 背景色     */
+	color         : #000000;     /* 文字色     */
+	line-height   : 1em;         /* 1行の高さ  */
+	opacity       : 0.9;         /* 透明度     */
+	transition    : .3s;         /* なめらか変化 */
+	
+  }
+  .button:hover {
+	box-shadow    : none;        /* カーソル時の影消去 */
+	opacity       : 1;           /* カーソル時透明度 */
+  }
+  .wh-200px{
+    width: 200px !important;
+    height: 200px !important;
+}
+
+/**
+ * codeタグ（コードテキスト）
+ */
+code {
+	font-family: "Meiryo", Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+}
+
+/**
+ * preタグ（整形済みテキスト）
+ */
+pre {
+	font-family: "Meiryo", Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+}
+
+/**
+ * blockquoteタグ（引用）
+ */
+blockquote {
+	border-color: #ffd2d6;;
+}
+
+/**
+ * h1タグ（見出し1）
+ */
+
+ h1 {
+    padding: 0.5em;/*文字周りの余白*/
+    color: #010101;/*文字色*/
+    background: #ffd2d6;/*背景色*/
+    border-bottom: solid 5px #ff2e38;/*下線*/
+    border-left: solid 10px #ff2e38;
+    
+  }
+
+
+
+/**
+ * h2タグ（見出し2）
+ */
+ h2 {
+    background: #ffd2d6;
+    box-shadow: 0px 0px 0px 5px #ffd2d6;
+    border: dashed 1px #ff6b6b;
+    padding: 0.2em 0.5em;
+    color: #454545;
+  }
+
+/**
+ * h3タグ（見出し3）
+ */
+h3 {
+	color: #494949;
+	padding: .5em .75em;
+	background-color: #f4f4f4;
+	border-left: 6px solid #ffd2d6;
+}
+
+/**
+ * h4タグ（見出し4）
+ */
+h4 {
+	color: #494949;
+	padding: .5em .75em;
+	background-color: #f4f4f4;
+	border-radius: 6px;
+}
+
+/**
+ * h5タグ（見出し5）
+ */
+h5 {
+	color: #494949;
+	padding: .5em .75em;
+	border-bottom-style: dotted;
+	border-bottom-color: #ffd2d6;
+	border-bottom-width:thin;
+}
+
+/**
+ * tableタグ（表）
+ */
+table thead th {
+	background: #ffd2d6;
+	font-weight: bold;
+	vertical-align: top;
+	color: #fff;
+}
+table th,
+table td {
+	padding: 6px 13px;
+	border: 1px solid #ddd;
+}
+table tr {
+	background-color: #fff;
+	border-top: 1px solid #ccc;
+}
+table tr:nth-child(2n) {
+	background-color: #f8f8f8;
+}
+
+/**
+ * hrタグ（水平線）
+ */
+hr {
+	background-color: #fff;
+	border-color: #ffd2d6;;
+	border-top: 1px dashed #ffd2d6;;
+}
+
+/**
+ * ulタグ（リスト）
+ */
+ul li{
+	padding:0px;
+	margin:0px;
+}
+ul li{
+	list-style-type:none !important;
+	list-style-image:none !important;
+	margin: 5px 0px 5px 0px !important;
+}
+ul li{
+	position:relative;
+	padding-left:20px;
+}
+ul li:after{
+	content:'';
+	display:block; 
+	position:absolute; 
+	background:#ffd2d6;;
+	width:9px;
+	height:9px; 
+	top:5px; 
+	left:5px; 
+	transform:rotate(-45deg);
+	-webkit-transform:rotate(-45deg);
+	-o-transform:rotate(-45deg);
+}
+
+/**
+ * olタグ（順序リスト）
+ */
+ ol {
+	counter-reset:li;
+	padding:0;
+	list-style:none;
+}
+ol li {
+	position:relative;
+	margin:0 0 8px 4em;
+	padding:2px 8px;
+}
+ol li:before {
+	content:counter(li);
+	counter-increment:li;
+	position:absolute;
+	top:-2px;
+	left:-2em;
+	width:2em;
+	padding:3px 0;
+	color:#fff;
+	background:#ffd2d6;;
+	font-weight:bold;
+	text-align:center;
+	border-radius: 20px;
+}
+
+/**
+ * aタグ（リンク）
+ */
+a {
+	color: #4078c0;
+	text-decoration: none;
+}
+a:hover,
+a:active {
+	text-decoration: underline;
+}

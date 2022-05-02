@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>科目登録確認</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.0.0-beta3/css/bootstrap.min.css}">
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/5.0.0-beta3/js/bootstrap.min.js}"></script>
+</head>
+
+<body class="m-3">
+
+    <h1>科目登録確認</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th scope="row">科目コード</th>
+                <td>[[${sCode}]]</td>
+            </tr>
+            <tr>
+                <th scope="row">科目名</th>
+                <td>[[${name}]]</td>
+            </tr>
+            <tr>
+                <th scope="row">説明</th>
+                <td>[[${description}]]</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <form method="post" th:action="@{/subject/register}" class="mb-3">
+        <input type="hidden" name="sCode" th:value="${sCode}">
+        <input type="hidden" name="name" th:value="${name}">
+        <input type="hidden" name="description" th:value="${description}">
+        <input type="submit" class="btn btn-primary" value="登録する">
+    </form>
+
+
+    <form method="get" th:action="@{/subject/add}">
+        <input type="submit" class="btn btn-warning" value="やめる">
+    </form>
+
+</body>
+
+</html>

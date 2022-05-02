@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>勉強時間記録</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.0.0-beta3/css/bootstrap.min.css}">
+    <script th:src="@{/webjars/bootstrap/5.0.0-beta3/js/bootstrap.min.js}" type="text/javascript"></script>
+</head>
+
+<body class="m-3">
+    <h1>勉強状況</h1>
+
+    <table class="table mb-3">
+        <thead>
+            <tr>
+                <th>ユーザ</th>
+                <th>現在の勉強</th>
+                <th>直前の勉強</th>
+                <th>いつまで</th>
+                <th>何秒</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="status:${statuss}">
+                <td th:text="${status.uid}"></td>
+                <td th:text="${status.}"></td>
+                <td th:text="${log.type}"></td>
+                <td th:text="${log.comment}"></td>
+                <td th:if="${log.type} eq 'start'"></td>
+                <td th:unless="${log.type} eq 'start'">
+                    <form method="post" th:action="@{/logs/lookback/delete}" th:object="${deleteEventForm}">
+                        <input name="uid" th:value="${uid}" type="hidden">
+                        <input name="eid" th:value="${log.eid}" type="hidden">
+                        <input name="type" th:value="${log.type}" type="hidden">
+                        <input class="btn btn-danger col-auto w-150px" type="submit" value="削除">
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2 th:if="${isCreateStudying}" class="text-danger">現在行っている勉強を終了してから追加してください</h2>
+    <h2 th:if="${isParseExceptionError}" class="text-danger">日時を正しく入力してください</h2>
+    <h2 th:if="${isCreateEventExceptionError}" class="text-danger">既存のログと日時をが被らず、過去の日時になるように入力してください</h2>
+
+    <form method="post" th:action="@{/logs/lookback/create}" th:object="${createLogForm}">
+        <input name="uid" th:value="${uid}" type="hidden">
+        <div class="mb-3">
+            <label class="form-label" for="since">いつから</label>
+            <input placeholder="yyyy/mm/dd hh:mm:ss" th:field="*{since}" type="text">
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="until">いつまで</label>
+            <input placeholder="yyyy/mm/dd hh:mm:ss" th:field="*{until}" type="text">
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="name">科目名</label>
+            <input class="form-control" placeholder="科目" th:field="*{name}" type="text">
+        </div>
+        <div class="mb-3">
+            <input class="btn btn-primary" type="submit" value="追加">
+        </div>
+    </form>
+</body>
+
+</html>

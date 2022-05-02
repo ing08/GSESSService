@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>勉強時間記録</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.0.0-beta3/css/bootstrap.min.css}">
+    <script th:src="@{/webjars/bootstrap/5.0.0-beta3/js/bootstrap.min.js}" type="text/javascript"></script>
+</head>
+
+<body class="m-3">
+    <h1>勉強時間記録</h1>
+
+    <div class="d-flex flex-row mb-3 mt-3">
+        <div class="item me-1">
+            <form method="get" th:action="@{/user/enter}" th:object="${uidForm}">
+                <input name="uid" th:value="${uid}" type="hidden">
+                <input class="btn btn-secondary col-auto w-150px" type="submit" value="戻る">
+            </form>
+        </div>
+        <!-- <div class="item me-1">
+            <form method="get" th:action="@{/logs/lookback}" th:object="${dateQuaryForm}">
+                <input name="uid" th:value="${uid}" type="hidden">
+                <input name="since" th:value="${today}" type="hidden">
+                <input name="today" th:value="${until}" type="hidden">
+                <input class="btn btn-secondary col-auto w-150px" type="submit" value="振り返る&追加(未実装)">
+            </form>
+        </div> -->
+        <div class="item me-1">
+            <form method="get" th:action="@{/logs}" th:object="${uidForm}">
+                <input name="uid" th:value="${uid}" type="hidden">
+                <input class="btn btn-secondary col-auto w-150px" type="submit" value="カレンダー(未実装)">
+            </form>
+        </div>
+        <div class="item me-1">
+            <form method="get" th:action="@{/logs}" th:object="${uidForm}">
+                <input name="uid" th:value="${uid}" type="hidden">
+                <input class="btn btn-secondary col-auto w-150px" type="submit" value="ランキング(未実装)">
+            </form>
+        </div>
+        <div class="item me-1">
+            <form>
+                <input class="btn btn-secondary col-auto w-150px" onclick="location.href='https://wsapp.cs.kobe-u.ac.jp/gsess/status.php'" value="みんなの勉強状況">
+            </form>
+        </div>
+    </div>
+
+    <h2 th:if="${isStudy}" class="text-primary">現在、[[${name}]]を勉強中です</h2>
+    <h2　th:unless="${isStudy}">[[${nickname}]]さん、どの教科を勉強しますか</h2>
+    <h2 th:if="${isStudyDidNotEndError}" class="text-danger">直近の勉強記録が終了していません</h2>
+    <h2 th:if="${isStudyEventDoseNotRecordError}" class="text-danger">正常に記録できませんでした</h2>
+
+    <h3>累計勉強時間 : [[${hour}]]時間 [[${min}]]分 [[${sec}]]秒</h3>
+
+    <div class="d-flex flex-row flex-wrap mb-3 mt-3">
+        <div class="item mb-1 me-1" th:each="subject:${subjects}">
+            <div th:if="${subject.name} eq ${name}">
+                <form method="post" th:action="@{/logs/endstudy}" the:object="${endStudyForm}">
+                    <input name="uid" th:value="${uid}" type="hidden">
+                    <input name="sCode" th:value="${subject.sCode}" type="hidden">
+                    <input class="btn btn-success col-auto wh-500px" type="submit" th:value="${subject.name}">
+                </form>
+            </div>
+            <div th:unless="${subject.name} eq ${name}">
+                <form method="post" th:action="@{/logs/startstudy}" the:object="${startStudyForm}">
+                    <input name="uid" th:value="${uid}" type="hidden">
+                    <input name="sCode" th:value="${subject.sCode}" type="hidden">
+                    <input class="btn btn-primary col-auto wh-500px" type="submit" th:value="${subject.name}">
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <h2 th:if="${isCommentFormError}" class="text-danger">入力してください</h2>
+
+    <form method="post" th:action="@{/logs/comment}" th:object="${commentForm}">
+        <input name="uid" th:value="${uid}" type="hidden">
+        <div class="mb-3 mt-3">
+            <input class="form-control" placeholder="コメント" th:field="*{comment}" required type="text">
+        </div>
+        <div class="mb-3">
+            <input class="btn btn-primary" type="submit" value="記録">
+        </div>
+    </form>
+
+    <h2 th:if="${isCreateStudying}" class="text-danger">現在行っている勉強を終了してから追加してください</h2>
+    <h2 th:if="${isSubjectDoseNotExist}" class="text-danger">科目が存在しません</h2>
+    <h2 th:if="${isParseExceptionError}" class="text-danger">日時を正しく入力してください</h2>
+    <h2 th:if="${isCreateEventExceptionError}" class="text-danger">既存のログと日時をが被らず、過去の日時になるように入力してください</h2>
+
+    <form method="post" th:action="@{/logs/create}" th:object="${createLogForm}">
+        <input name="uid" th:value="${uid}" type="hidden">
+        <div class="mb-3">
+            <label class="form-label" for="since">いつから</label>
+            <input placeholder="yyyy/mm/dd hh:mm:ss" th:field="*{since}" required type="text">
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="until">いつまで</label>
+            <input placeholder="yyyy/mm/dd hh:mm:ss" th:field="*{until}" required type="text">
+        </div>
+        <div class="mb-3">
+            <input class="form-control" placeholder="科目名" th:field="*{name}" required type="text">
+        </div>
+        <div class="mb-3">
+            <input class="btn btn-primary" type="submit" value="追加">
+        </div>
+    </form>
+
+    <h2 th:if="${isDeleteStudying}" class="text-danger">現在行っている勉強を終了してから削除してください</h2>
+    <h2 th:if="${isEventDoesNotExist}" class="text-danger">削除できませんでした</h2>
+    <h2 th:if="${isLogDoesNotExist}" class="text-danger">削除できませんでした</h2>
+
+    <table class="table mb-3">
+        <thead>
+            <tr>
+                <th>日付</th>
+                <th>科目</th>
+                <th>タイプ</th>
+                <th>コメント</th>
+                <th>編集</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="log:${logs}"
+                th:class="${log.type eq 'start'}? 'table-light' :(${log.type eq 'end'}? 'table-warning' : 'table-info')">
+                <td th:text="${log.date}"></td>
+                <td th:text="${log.name}"></td>
+                <td th:text="${log.type}"></td>
+                <td th:text="${log.comment}"></td>
+                <td th:if="${log.type} eq 'start'"></td>
+                <td th:unless="${log.type} eq 'start'">
+                    <form method="post" th:action="@{/logs/delete}" th:object="${deleteEventForm}">
+                        <input name="uid" th:value="${uid}" type="hidden">
+                        <input name="eid" th:value="${log.eid}" type="hidden">
+                        <input name="type" th:value="${log.type}" type="hidden">
+                        <input class="btn btn-danger col-auto w-150px" type="submit" value="削除">
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>

@@ -1,0 +1,15 @@
+/* 横並びにコンテンツを配置したいときに使う */
+
+.flex-box {
+    background-color: rgb(255, 255, 255);     /* 背景色指定 */
+    padding:  10px;             /* 余白指定 */
+    display: flex;              /* フレックスボックスにする */
+    justify-content:flex-start;
+}
+ 
+.flex-item {
+    padding: 10px;
+    
+    margin:  10px;              /* 外側の余白 */
+    
+}

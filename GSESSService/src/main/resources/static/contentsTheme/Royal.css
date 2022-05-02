@@ -1,0 +1,245 @@
+/**
+ * bodyタグ（文書本体）
+ */
+ body {
+	background-color: #ffffff;
+	color: #494949;
+}
+
+.button {
+    font-family: 'ヒラギノ明朝 Pro W3', 'Hiragino Mincho Pro', 'Hiragino Mincho ProN', 'HGS明朝E', 'ＭＳ Ｐ明朝', serif;
+	display       : inline-block;
+	border-radius : 4%;          /* 角丸       */
+	font-size     : 14pt;        /* 文字サイズ */
+	text-align    : center;      /* 文字位置   */
+	cursor        : pointer;     /* カーソル   */
+	padding       : 10px 10px;   /* 余白       */
+	background    : #494949;    /* 背景色     */
+	color         : #ffffff;     /* 文字色     */
+	line-height   : 1em;         /* 1行の高さ  */
+	opacity       : 0.9;         /* 透明度     */
+	transition    : .3s;         /* なめらか変化 */
+	
+  }
+  .button:hover {
+	box-shadow    : none;        /* カーソル時の影消去 */
+	opacity       : 1;           /* カーソル時透明度 */
+  }
+  .wh-200px{
+    width: 200px !important;
+    height: 200px !important;
+}
+
+/**
+ * codeタグ（コードテキスト）
+ */
+code {
+	font-family: "Meiryo", Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+}
+
+/**
+ * preタグ（整形済みテキスト）
+ */
+pre {
+	font-family: "Meiryo", Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+}
+
+/**
+ * blockquoteタグ（引用）
+ */
+blockquote {
+	border-color: #494949;;
+}
+
+/**
+ * h1タグ（見出し1）
+ */
+ h1 {
+    font-family: 'ヒラギノ明朝 Pro W3', 'Hiragino Mincho Pro', 'Hiragino Mincho ProN', 'HGS明朝E', 'ＭＳ Ｐ明朝', serif;
+    padding: 1rem 2rem;
+    color: #fff;
+    background: #000;
+  }
+  
+  h1 span {
+    background-image: -webkit-linear-gradient(315deg, #b8751e 0%, #ffce08 37%, #fefeb2 47%, #fafad6 50%, #fefeb2 53%, #e1ce08 63%, #b8751e 100%);
+    background-image: linear-gradient(135deg, #b8751e 0%, #ffce08 37%, #fefeb2 47%, #fafad6 50%, #fefeb2 53%, #e1ce08 63%, #b8751e 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+/**
+ * h2タグ（見出し2）
+ */
+ h2 {
+    font-family: 'ヒラギノ明朝 Pro W3', 'Hiragino Mincho Pro', 'Hiragino Mincho ProN', 'HGS明朝E', 'ＭＳ Ｐ明朝', serif;
+    position: relative;
+    padding: 1.5rem 2rem;
+    -webkit-box-shadow: 0 2px 14px rgba(0, 0, 0, .1);
+    box-shadow: 0 2px 14px rgba(0, 0, 0, .1);
+  }
+  
+  h2:before,
+  h2:after {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    content: '';
+    background-image: -webkit-linear-gradient(315deg, #000000 0%, #58533f 40%, #55544c 60%, #000000 100%);
+    background-image: linear-gradient(135deg, #000000 0%, #58533f 40%, #55544c 60%, #000000 100%);
+  }
+  
+  h2:before {
+    top: 0;
+  }
+  
+  h2:after {
+    bottom: 0;
+  }
+
+/**
+ * h3タグ（見出し3）
+ */
+ h3 {
+    font-family: 'ヒラギノ明朝 Pro W3', 'Hiragino Mincho Pro', 'Hiragino Mincho ProN', 'HGS明朝E', 'ＭＳ Ｐ明朝', serif;
+    position: relative;
+    padding: 1.5rem 1rem;
+  }
+  
+  h3:after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    content: '';
+    background-image: -webkit-repeating-linear-gradient(135deg, #000, #000 1px, transparent 2px, transparent 5px);
+    background-image: repeating-linear-gradient(-45deg, #000, #000 1px, transparent 2px, transparent 5px);
+    background-size: 7px 7px;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+
+/**
+ * h4タグ（見出し4）
+ */
+h4 {
+    font-family: 'ヒラギノ明朝 Pro W3', 'Hiragino Mincho Pro', 'Hiragino Mincho ProN', 'HGS明朝E', 'ＭＳ Ｐ明朝', serif;
+	color: #ffffff;
+	padding: .5em .75em;
+	background-color: #000000;
+}
+
+/**
+ * h5タグ（見出し5）
+ */
+h5 {
+    font-family: 'ヒラギノ明朝 Pro W3', 'Hiragino Mincho Pro', 'Hiragino Mincho ProN', 'HGS明朝E', 'ＭＳ Ｐ明朝', serif;
+	color: #fdfdfd;
+	padding: .5em .75em;
+	border-bottom-style: dotted;
+	border-bottom-color: #494949;
+	border-bottom-width:thin;
+}
+
+/**
+ * tableタグ（表）
+ */
+table thead th {
+	background: #fdfdfd;
+	font-weight: bold;
+	vertical-align: top;
+	color: #fff;
+}
+table th,
+table td {
+	padding: 6px 13px;
+	border: 1px solid #ddd;
+}
+table tr {
+	background-color: #fff;
+	border-top: 1px solid #ccc;
+}
+table tr:nth-child(2n) {
+	background-color: #f8f8f8;
+}
+
+/**
+ * hrタグ（水平線）
+ */
+hr {
+	background-color: #fff;
+	border-color: #494949;;
+	border-top: 1px dashed #494949;;
+}
+
+/**
+ * ulタグ（リスト）
+ */
+ul li{
+	padding:0px;
+	margin:0px;
+}
+ul li{
+	list-style-type:none !important;
+	list-style-image:none !important;
+	margin: 5px 0px 5px 0px !important;
+}
+ul li{
+	position:relative;
+	padding-left:20px;
+}
+ul li:after{
+	content:'';
+	display:block; 
+	position:absolute; 
+	background:#494949;;
+	width:9px;
+	height:9px; 
+	top:5px; 
+	left:5px; 
+	transform:rotate(-45deg);
+	-webkit-transform:rotate(-45deg);
+	-o-transform:rotate(-45deg);
+}
+
+/**
+ * olタグ（順序リスト）
+ */
+ ol {
+	counter-reset:li;
+	padding:0;
+	list-style:none;
+}
+ol li {
+	position:relative;
+	margin:0 0 8px 4em;
+	padding:2px 8px;
+}
+ol li:before {
+	content:counter(li);
+	counter-increment:li;
+	position:absolute;
+	top:-2px;
+	left:-2em;
+	width:2em;
+	padding:3px 0;
+	color:#fff;
+	background:#494949;;
+	font-weight:bold;
+	text-align:center;
+	border-radius: 20px;
+}
+
+/**
+ * aタグ（リンク）
+ */
+a {
+	color: #4078c0;
+	text-decoration: none;
+}
+a:hover,
+a:active {
+	text-decoration: underline;
+}

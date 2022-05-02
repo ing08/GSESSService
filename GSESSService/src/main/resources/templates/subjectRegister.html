@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>科目追加</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.0.0-beta3/css/bootstrap.min.css}">
+    <script th:src="@{/webjars/bootstrap/5.0.0-beta3/js/bootstrap.min.js}" type="text/javascript"></script>
+</head>
+
+<body class="m-3">
+
+    <h1>科目追加</h1>
+
+    <h2 th:if="${isSubjectAlreadyExistsError}">科目が登録済みです</h2>
+    <h2 th:if="${isUserFormError}">科目の登録情報が誤っています</h2>
+
+    <form method="get" th:action="@{/subject/register/confirm}" th:object="${subjectForm}">
+        <div class="mb-3">
+            <input class="form-control" pattern="[0-9A-Z]+" placeholder="科目コード" required th:field="*{sCode}"
+                type="text">
+        </div>
+        <div class="mb-3">
+            <input class="form-control" placeholder="科目名" required th:field="*{name}" type="text">
+        </div>
+        <div class="mb-3">
+            <input class="form-control" placeholder="説明" required th:field="*{description}" type="text">
+        </div>
+        <div class="mb-3">
+            <input class="btn btn-primary" type="submit" value="登録する">
+        </div>
+    </form>
+
+    <form method="get" th:action="@{/controll}">
+        <input class="btn btn-warning" type="submit" value="やめる">
+    </form>
+
+    <table class="table mb-3">
+        <thead>
+            <tr>
+                <th>科目コード</th>
+                <th>科目名</th>
+                <th>説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="subject:${subjects}">
+                <td th:text="${subject.sCode}"></td>
+                <td th:text="${subject.name}"></td>
+                <td th:text="${subject.description}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>
