@@ -1,5 +1,7 @@
 # GSESSSerive
 
-大学院合格サービスです
+- 大学院合格サービスです
 
-みんなで合格しよう！
+- [デプロイしたサービス](https://wsapp.cs.kobe-u.ac.jp/GSESSService/?)
+
+- みんなで合格しよう！
